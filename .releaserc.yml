@@ -6,11 +6,13 @@ env:
 
 plugins:
   - "@semantic-release/commit-analyzer"
-  - "@semantic-release/changelog"
+  - 
+    - "@semantic-release/changelog"
+    - changelogFile: 'docs/changelog.md'
   - "@semantic-release/release-notes-generator"
   - 
     - "@semantic-release/exec"
-    - publishCmd: "dotnet pack ./src/Example/Example.csproj -o ./publish"
+    - prepareCmd: "cp README.md ./src/Example/README.md && dotnet pack ./src/Example/Example.csproj -o ./publish"
   -
     - "@droidsolutions-oss/semantic-release-update-file"
     - files:
@@ -23,10 +25,10 @@ plugins:
   -
     - "@semantic-release/git"
     - assets:
-      - path: "docs/changelog.md"
-        label: changelog"
-      - path: "package.json"
-        label: package
-      - path: "package-lock.json"
-        label: packagelock
+      - path: readme.md
+        label: readme
+      - path: docs/changelog.md
+        label: changelog
+      - path: publish/Example.${nextRelease.version}.nupkg
+        label: nuget-package
     
