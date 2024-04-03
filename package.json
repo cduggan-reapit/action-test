@@ -1,0 +1,29 @@
+{
+  "name": "actions-example",
+  "version": "1.0.0",
+  "description": "Example project for testing actions",
+  "main": "index.js",
+  "scripts": {
+    "test": "dotnet test ./src/",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cduggan-reapit/action-test.git"
+  },
+  "keywords": [
+    "test",
+    "actions"
+  ],
+  "author": "Craig Duggan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cduggan-reapit/action-test/issues"
+  },
+  "homepage": "https://github.com/cduggan-reapit/action-test#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
+    "husky": "^9.0.11"
+  }
+}
