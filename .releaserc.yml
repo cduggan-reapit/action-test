@@ -1,0 +1,32 @@
+branches:
+  - main
+
+env:
+  HUSKY: 0
+
+plugins:
+  - "@semantic-release/commit-analyzer"
+  - "@semantic-release/changelog"
+  - "@semantic-release/release-notes-generator"
+  - 
+    - "@semantic-release/exec"
+    - publishCmd: "dotnet pack ./src/Example/Example.csproj -o ./publish"
+  -
+    - "@droidsolutions-oss/semantic-release-update-file"
+    - files:
+      - type: xml
+        path:
+        - "src/Example/Example.csproj"
+        replacements:
+        - key: Version
+          value: ${nextRelease.version}
+  -
+    - "@semantic-release/git"
+    - assets:
+      - path: "docs/changelog.md"
+        label: changelog"
+      - path: "package.json"
+        label: package
+      - path: "package-lock.json"
+        label: packagelock
+    
