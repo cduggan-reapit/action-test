@@ -3,16 +3,17 @@ branches:
 
 env:
   HUSKY: 0
+  HUSKY_SKIP_INSTALL: 1
 
 plugins:
   - "@semantic-release/commit-analyzer"
   - 
     - "@semantic-release/changelog"
-    - changelogFile: 'docs/changelog.md'
+    - changelogFile: 'docs/CHANGELOG.md'
   - "@semantic-release/release-notes-generator"
   - 
     - "@semantic-release/exec"
-    - prepareCmd: "cp README.md ./src/Example/README.md && dotnet pack ./src/Example/Example.csproj -o ./publish"
+    - prepareCmd: "dotnet pack ./src/Example/Example.csproj -o ./publish"
   -
     - "@droidsolutions-oss/semantic-release-update-file"
     - files:
@@ -24,11 +25,8 @@ plugins:
           value: ${nextRelease.version}
   -
     - "@semantic-release/git"
-    - assets:
-      - path: readme.md
-        label: readme
-      - path: docs/changelog.md
-        label: changelog
-      - path: publish/Example.${nextRelease.version}.nupkg
-        label: nuget-package
-    
+    - message: "chore(release): ${nextRelease.version} [skip ci]"
+      assets:
+      - docs/CHANGELOG.md
+      - src/Example/Example.csproj
+  
