@@ -2,6 +2,7 @@ branches:
   - main
 
 env:
+  # Commitlinting gets tripped up by the release commit, disabling Husky skips that step
   HUSKY: 0
   HUSKY_SKIP_INSTALL: 1
 
@@ -14,6 +15,7 @@ plugins:
   - 
     - "@semantic-release/exec"
     - prepareCmd: "dotnet pack ./src/Example/Example.csproj -o ./publish"
+      publishCmd: "dotnet nuget push ./publish/*.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/cduggan-reapit/index.json --skip-duplicate --no-symbols"
   -
     - "@droidsolutions-oss/semantic-release-update-file"
     - files:
