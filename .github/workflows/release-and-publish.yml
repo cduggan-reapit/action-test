@@ -5,12 +5,6 @@ on:
     branches:
       - main
 
-env:
-  USER_NAME: cduggan-reapit
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  NUGET_FEED: https://nuget.pkg.github.com/cduggan-reapit/index.json
-  NUGET_FEED_NAME: github
-
 jobs:
   release:
     name: Release and Publish
@@ -48,7 +42,10 @@ jobs:
       - name: publish to nuget feed
         if: success()
         env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USER_NAME: cduggan-reapit
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUGET_FEED: https://nuget.pkg.github.com/cduggan-reapit/index.json
+          NUGET_FEED_NAME: github
         run: |
           dotnet pack ./src/Example/Example.csproj -o ./nuget
           dotnet nuget add source ${NUGET_FEED} --name ${NUGET_FEED_NAME} --username ${USER_NAME} --password ${GITHUB_TOKEN} --store-password-in-clear-text
