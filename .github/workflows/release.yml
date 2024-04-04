@@ -5,9 +5,6 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-
 env:
   USER_NAME: cduggan-reapit
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -23,6 +20,7 @@ jobs:
       issues: write
       pull-requests: write
       id-token: write
+      packages: write
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -54,5 +52,6 @@ jobs:
         run: |
           dotnet pack ./src/Example/Example.csproj -o ./nuget
           dotnet nuget add source ${NUGET_FEED} --name ${NUGET_FEED_NAME} --username ${USER_NAME} --password ${GITHUB_TOKEN} --store-password-in-clear-text
-          dotnet nuget push ./nuget/*.nupkg -k ${GITHUB_TOKEN} --source ${NUGET_FEED_NAME} --skip-duplicate --no-symbols
+          dotnet nuget list source
+          dotnet nuget push ./nuget/*.nupkg --api-key ${GITHUB_TOKEN} --source ${NUGET_FEED_NAME} --skip-duplicate --no-symbols
   
