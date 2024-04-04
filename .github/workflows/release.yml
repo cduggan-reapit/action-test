@@ -44,6 +44,6 @@ jobs:
       - name: publish to nuget feed
         if: success()
         run: |
-          dotnet pack ./src/Example/Exaple.csproj -o ./nuget
+          dotnet pack ./src/Example/Example.csproj -o ./nuget
           dotnet nuget push ./nuget/*.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/cduggan-reapit/index.json --skip-duplicate --no-symbols
   
