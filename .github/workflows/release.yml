@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  release:
+  prepare-release:
     name: release
     runs-on: ubuntu-latest
     permissions:
@@ -32,7 +32,18 @@ jobs:
           dotnet-version: 6.0.x
       - name: install dependencies
         run: npm ci
+      
+      # Cut a new version if necessary
       - name: release
+        id: semrel
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
+      
+      # Publish the new version if everything has worked so far
+      - name: publish to nuget feed
+        if: success()
+        run: |
+          dotnet pack ./src/Example/Exaple.csproj -o ./nuget
+          dotnet nuget push ./nuget/*.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/cduggan-reapit/index.json --skip-duplicate --no-symbols
+  
