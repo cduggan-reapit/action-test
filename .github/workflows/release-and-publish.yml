@@ -33,7 +33,6 @@ jobs:
       
       # Cut a new version if necessary
       - name: create release
-        id: semrel
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
