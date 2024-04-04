@@ -23,4 +23,8 @@ plugins:
         label: changelog
       - path: src/Example/Example.csproj
         label: project
-  
+  -
+    - "@semantic-release/github"
+    - assets:
+      - path: "./nuget/*.nupkg"
+        label: nuget package
