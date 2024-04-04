@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/cduggan-reapit/action-test/compare/v1.3.0...v1.4.0) (2024-04-04)
+
+
+### Features
+
+* publish new verison ([d9f6914](https://github.com/cduggan-reapit/action-test/commit/d9f6914a9b6e519e32f20f78ada98aff361c5058))
+
 # [1.3.0](https://github.com/cduggan-reapit/action-test/compare/v1.2.0...v1.3.0) (2024-04-04)
 
 
