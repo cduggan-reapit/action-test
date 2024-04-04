@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/cduggan-reapit/action-test/compare/v1.4.0...v1.4.1) (2024-04-04)
+
+
+### Bug Fixes
+
+* allow long commit messages ([8584058](https://github.com/cduggan-reapit/action-test/commit/858405897ec0cd32456c9094243947ed5f6c9fd9))
+
 # [1.4.0](https://github.com/cduggan-reapit/action-test/compare/v1.3.0...v1.4.0) (2024-04-04)
 
 
