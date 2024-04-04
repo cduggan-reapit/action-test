@@ -1,4 +1,4 @@
-name: Release
+name: Release and Publish
 
 on: 
   push:
@@ -12,8 +12,8 @@ env:
   NUGET_FEED_NAME: github
 
 jobs:
-  prepare-release:
-    name: release
+  release:
+    name: Release and Publish
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -38,7 +38,7 @@ jobs:
         run: npm ci
       
       # Cut a new version if necessary
-      - name: release
+      - name: create release
         id: semrel
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -52,6 +52,5 @@ jobs:
         run: |
           dotnet pack ./src/Example/Example.csproj -o ./nuget
           dotnet nuget add source ${NUGET_FEED} --name ${NUGET_FEED_NAME} --username ${USER_NAME} --password ${GITHUB_TOKEN} --store-password-in-clear-text
-          dotnet nuget list source
           dotnet nuget push ./nuget/*.nupkg --api-key ${GITHUB_TOKEN} --source ${NUGET_FEED_NAME} --skip-duplicate --no-symbols
   
