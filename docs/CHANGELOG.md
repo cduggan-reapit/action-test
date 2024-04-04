@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/cduggan-reapit/action-test/compare/v1.4.1...v1.5.0) (2024-04-04)
+
+
+### Features
+
+* lets see if semrel-github works ([ff89c6b](https://github.com/cduggan-reapit/action-test/commit/ff89c6b8e899f8742df4d32930bf3c73da4335f6))
+
 ## [1.4.1](https://github.com/cduggan-reapit/action-test/compare/v1.4.0...v1.4.1) (2024-04-04)
 
 
