@@ -54,5 +54,5 @@ jobs:
         run: |
           dotnet pack ./src/Example/Example.csproj -o ./nuget
           dotnet nuget add source ${NUGET_FEED} --name ${NUGET_FEED_NAME} --username ${USER_NAME} --password ${GITHUB_TOKEN}
-          dotnet nuget push ./nuget/*.nupkg -k ${GITHUB_TOKEN} -source ${NUGET_FEED_NAME} --skip-duplicate --no-symbols
+          dotnet nuget list source
   
