@@ -3,3 +3,6 @@ extends:
 rules:
   body-max-line-length: [0, always]
   footer-max-line-length: [0, always]
+  header-case: ['lower-case', always]
+  scope-case: ['lower-case', always]
+  subject-case: ['lower-case', always]
