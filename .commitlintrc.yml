@@ -1,8 +1,19 @@
 extends:
   - "@commitlint/config-conventional"
 rules:
+  # disable line length limits on the message body
   body-max-line-length: [0, always]
   footer-max-line-length: [0, always]
-  header-case: ['lower-case', always]
-  scope-case: ['lower-case', always]
-  subject-case: ['lower-case', always]
+  # prevent commit if "type(scope?): subject" not in lowercase
+  type-case:
+    - 2
+    - always
+    - lower-case
+  scope-case: 
+    - 2
+    - always
+    - lower-case
+  subject-case:
+    - 2
+    - always
+    - lower-case
