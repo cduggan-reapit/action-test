@@ -38,15 +38,15 @@ jobs:
         run: npx semantic-release
       
       # Publish the new version if everything has worked so far
-      #- name: publish to nuget feed
-      #  if: success()
-      #  env:
-      #    USER_NAME: cduggan-reapit
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #    NUGET_FEED: https://nuget.pkg.github.com/cduggan-reapit/index.json
-      #    NUGET_FEED_NAME: github
-      #  run: |
-      #    dotnet pack ./src/Example/Example.csproj -o ./nuget
-      #    dotnet nuget add source ${NUGET_FEED} --name ${NUGET_FEED_NAME} --username ${USER_NAME} --password ${GITHUB_TOKEN} --store-password-in-clear-text
-      #    dotnet nuget push ./nuget/*.nupkg --api-key ${GITHUB_TOKEN} --source ${NUGET_FEED_NAME} --skip-duplicate --no-symbols
+      - name: publish to nuget feed
+        if: success()
+        env:
+          USER_NAME: cduggan-reapit
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUGET_FEED: https://nuget.pkg.github.com/cduggan-reapit/index.json
+          NUGET_FEED_NAME: github
+        run: |
+          dotnet pack ./src/Example/Example.csproj -o ./nuget
+          dotnet nuget add source ${NUGET_FEED} --name ${NUGET_FEED_NAME} --username ${USER_NAME} --password ${GITHUB_TOKEN} --store-password-in-clear-text
+          dotnet nuget push ./nuget/*.nupkg --api-key ${GITHUB_TOKEN} --source ${NUGET_FEED_NAME} --skip-duplicate --no-symbols
   

@@ -25,6 +25,3 @@ plugins:
         label: project
   -
     - "@semantic-release/github"
-    - assets:
-      - path: "./nuget/*.nupkg"
-        label: nuget package
