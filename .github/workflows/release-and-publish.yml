@@ -7,7 +7,7 @@ on:
 
 env: 
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  VERSION_CREATED: false
+  VERSION_CREATED: '0.0.0'
 jobs:
   release:
     name: Release and Publish
@@ -40,5 +40,5 @@ jobs:
 
       - name: print stuff
         # don't run this if we've not created a new version
-        if: ${{ env.VERSION_CREATED != false }}
+        if: ${{ env.VERSION_CREATED != '0.0.0' }}
         run: echo ${{ env.VERSION_CREATED }}
