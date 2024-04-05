@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/cduggan-reapit/action-test/compare/v1.6.0...v1.6.1) (2024-04-05)
+
+
+### Bug Fixes
+
+* check it runs on new version ([02fe0e8](https://github.com/cduggan-reapit/action-test/commit/02fe0e882f5438c2b4f1404bf4674311b235d53a))
+
 # [1.6.0](https://github.com/cduggan-reapit/action-test/compare/v1.5.2...v1.6.0) (2024-04-05)
 
 
