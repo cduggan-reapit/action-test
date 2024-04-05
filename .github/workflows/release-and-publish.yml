@@ -39,4 +39,6 @@ jobs:
         run: npx semantic-release
 
       - name: print stuff
+        # don't run this if we've not created a new version
+        if: env.VERSION_CREATED != false
         run: echo ${{ env.VERSION_CREATED }}
