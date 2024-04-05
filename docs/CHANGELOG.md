@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/cduggan-reapit/action-test/compare/v1.5.0...v1.5.1) (2024-04-04)
+
+
+### Bug Fixes
+
+* restore publish ([ce4d409](https://github.com/cduggan-reapit/action-test/commit/ce4d4096249ee963c699243112a8cf098614c906))
+
 # [1.5.0](https://github.com/cduggan-reapit/action-test/compare/v1.4.1...v1.5.0) (2024-04-04)
 
 
