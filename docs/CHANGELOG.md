@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/cduggan-reapit/action-test/compare/v1.5.1...v1.5.2) (2024-04-05)
+
+
+### Bug Fixes
+
+* test printing ([e52a95f](https://github.com/cduggan-reapit/action-test/commit/e52a95f38842e8abde60269830e996bb4a3a9cd7))
+
 ## [1.5.1](https://github.com/cduggan-reapit/action-test/compare/v1.5.0...v1.5.1) (2024-04-04)
 
 
