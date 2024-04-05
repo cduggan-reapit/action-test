@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/cduggan-reapit/action-test/compare/v1.5.2...v1.6.0) (2024-04-05)
+
+
+### Features
+
+* now return object ([d77bb9f](https://github.com/cduggan-reapit/action-test/commit/d77bb9f604de82531140228c89a9842f635c7f2d))
+
 ## [1.5.2](https://github.com/cduggan-reapit/action-test/compare/v1.5.1...v1.5.2) (2024-04-05)
 
 
