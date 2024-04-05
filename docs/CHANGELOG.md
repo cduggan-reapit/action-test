@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/cduggan-reapit/action-test/compare/v1.6.1...v1.6.2) (2024-04-05)
+
+
+### Bug Fixes
+
+* this should trigger it ([18d03e5](https://github.com/cduggan-reapit/action-test/commit/18d03e5ad433955d2fcd897b3d00e5c085c2bb61))
+
 ## [1.6.1](https://github.com/cduggan-reapit/action-test/compare/v1.6.0...v1.6.1) (2024-04-05)
 
 
