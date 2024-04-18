@@ -1,0 +1,18 @@
+name: Service Release & Deploy
+
+# this wouldn't really be where we run it, but is the best place to test
+on: 
+  push:
+    branches:
+      - main
+
+env:
+    VERSION_REFERENCE: $(date + '%Y%m%d')
+
+jobs:
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+        - name: tag last commit
+          run: echo ${VERSION_REFERENCE}
