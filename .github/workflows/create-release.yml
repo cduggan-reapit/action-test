@@ -4,7 +4,7 @@ name: Service Release & Deploy
 on: 
   push:
     branches:
-      - main
+      - '*'
 
 env:
     VERSION_REFERENCE: $(date + '%Y%m%d')
