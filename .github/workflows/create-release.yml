@@ -9,22 +9,30 @@ on:
 env:
   MAJOR_VERSION: '19700101'
   MINOR_VERSION: '1'
+  VERSION: '19700101.1'
 
 jobs:
   create-release:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: set env
+      # Major version = current date (can we use a date from github?)
+      # Minor version = the number of releases on that date + 1 (so starting from date.1)
+      - name: Generate version number parts
         run: |
           echo "MAJOR_VERSION=$(date +%Y%m%d).${{ github.run_number }}" >> $GITHUB_ENV
           echo "MINOR_VERSION=$(($(git tag -l '$(date +%Y%m%d))*' | wc -l)+1)) >> $GITHUB_ENV"
 
-      - name: test env
-        run: echo ${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}
+      - name: Create new version number
+        run:
+          echo "VERSION="v${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}" >> $GITHUB_ENV"
 
+      - name: Tag the commit
+        run: |
+          git tag 'v${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}' ${{ github.sha }}
+          git tag --list --contains ${{ github.sha }}
