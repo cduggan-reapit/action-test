@@ -7,7 +7,7 @@ on:
       - '*'
 
 env:
-    VERSION_REFERENCE: $(date + '%Y%m%d')
+    VERSION_REFERENCE: unknown
 
 jobs:
   create-release:
@@ -15,4 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: tag last commit
-          run: echo ${VERSION_REFERENCE}
+          run: |
+            echo VERSION_REFERENCE=$(date +%Y%m%d).${GITHUB_RUN_NUMBER} >> $GITHUB_ENV
+            echo ${VERSION_REFERENCE}
+
