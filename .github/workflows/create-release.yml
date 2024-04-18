@@ -17,5 +17,5 @@ jobs:
         - name: tag last commit
           run: |
             echo VERSION_REFERENCE=$(date +%Y%m%d).${GITHUB_RUN_NUMBER} >> $GITHUB_ENV
-            echo ${VERSION_REFERENCE}
+            echo ${{ env.VERSION_REFERENCE }}
 
