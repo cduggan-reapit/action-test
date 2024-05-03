@@ -39,17 +39,19 @@ jobs:
           name: test-results
           path: test-results/*.trx
       
-      # Create report
+      # Create report 
+      # limit to PRs?
       - name: generate code coverage report
         run: |
           mkdir code-coverage
           cp ./test-results/*/coverage.cobertura.xml ./test-results/coverage.cobertura.xml
           dotnet tool install -g dotnet-reportgenerator-globaltool
-          reportgenerator -reports:"test-results/coverage.cobertura.xml" -targetdir:"code-coverage" -reporttypes:Html
+          reportgenerator -reports:"test-results/coverage.cobertura.xml" -targetdir:"code-coverage" -reporttypes:Html;MarkdownSummaryGithub
+      
       - name: save code coverage report artifact
         uses: actions/upload-artifact@v4
         with:
-          name: code-coverage
-          path: code-coverage
+          name: code-coverage.md
+          path: code-coverage/*.md
 
       
