@@ -3,7 +3,7 @@ name: Build and Test Branch
 on: 
   push:
     branches:
-      - main
+      - '*'
 
 jobs:
   branch-build:
