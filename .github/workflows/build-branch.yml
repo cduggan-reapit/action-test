@@ -52,6 +52,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: code-coverage.md
-          path: code-coverage/SummaryGithub.md
+          path: code-coverage/*.md
 
       
