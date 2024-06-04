@@ -1,10 +1,6 @@
-name: Development
+name: Build and Test
 
 on:
-  push:
-    branches:
-      - main
-      - 'pr-test'
   pull_request:
     types:
       - opened
@@ -39,8 +35,19 @@ jobs:
       - name: "🔍 test solution"
         run: dotnet test ./src/ --no-build --logger trx --results-directory test-results --collect:"xplat code coverage"
       
-      - name: "💾 save results"
-        uses: actions/upload-artifact@v4
+      # unit tests => *.trx
+
+      # code coverage => coverage.cobertura.xml
+      - name: "📋 creating code coverage report"
+        run: |
+          mkdir coverage
+          cp ./test-results/*/coverage.cobertura.xml ./test-results/cobertura.xml
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+          reportgenerator -reports:"test-results/cobertura.xml" -targetdir:"coverage" -reporttypes:lcov
+
+      - name: "post"
+        uses: romeovs/lcov-reporter-action@v0.3.1
         with:
-          name: test-results
-          path: test-results/**
+          lcov-file: ./coverage/lcov.info
+
+
