@@ -13,6 +13,8 @@ jobs:
     name: Run unit tests
     runs-on: ubuntu-latest
     timeout-minutes: 2
+    permissions: 
+      pull-requests: write 
     steps: 
       - name: "☁️ checkout repository"
         uses: actions/checkout@v4
@@ -45,7 +47,7 @@ jobs:
           dotnet tool install -g dotnet-reportgenerator-globaltool
           reportgenerator -reports:"test-results/cobertura.xml" -targetdir:"coverage" -reporttypes:lcov
 
-      - name: "post"
+      - name: "💬 post coverage report to PR"
         uses: romeovs/lcov-reporter-action@v0.3.1
         with:
           lcov-file: ./coverage/lcov.info
