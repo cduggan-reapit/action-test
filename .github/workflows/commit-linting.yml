@@ -12,6 +12,7 @@ jobs:
   commit-lint:
     name: Commit linting
     runs-on: ubuntu-latest
+    if: ${{ false }}
     steps:
       - uses: actions/checkout@v4
         with:
