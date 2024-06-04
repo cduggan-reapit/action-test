@@ -14,6 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     permissions: 
+      contents: read
+      issues: read
+      checks: write
       pull-requests: write 
     steps: 
       - name: "☁️ checkout repository"
@@ -37,9 +40,12 @@ jobs:
       - name: "🔍 test solution"
         run: dotnet test ./src/ --no-build --logger trx --results-directory test-results --collect:"xplat code coverage"
       
-      # unit tests => *.trx
+      - name: "💬 post unit test results"
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: test-results/**.trx
+          comment_title: Unit Test Results
 
-      # code coverage => coverage.cobertura.xml
       - name: "📋 creating code coverage report"
         run: |
           mkdir coverage
