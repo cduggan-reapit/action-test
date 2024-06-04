@@ -1,0 +1,61 @@
+name: Build and Test
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+
+jobs:
+  test:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions: 
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write 
+    steps: 
+      - name: "☁️ checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "🔧 setup node"
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: "🔧 setup dotnet"
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 6.0.x
+
+      - name: "📦 build project"
+        run: |
+          dotnet restore ./src/
+          dotnet build ./src/ --no-restore
+
+      - name: "🔍 test solution"
+        run: dotnet test ./src/ --no-build --logger trx --results-directory test-results --collect:"xplat code coverage"
+      
+      - name: "💬 post unit test results"
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: test-results/**.trx
+          comment_title: Unit Test Results
+
+      - name: "📋 creating code coverage report"
+        run: |
+          mkdir coverage
+          cp ./test-results/*/coverage.cobertura.xml ./test-results/cobertura.xml
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+          reportgenerator -reports:"test-results/cobertura.xml" -targetdir:"coverage" -reporttypes:lcov
+
+      - name: "💬 post coverage report to PR"
+        uses: romeovs/lcov-reporter-action@v0.3.1
+        with:
+          lcov-file: ./coverage/lcov.info
+
+
